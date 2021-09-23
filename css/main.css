@@ -1,0 +1,26 @@
+.footer-div {
+  height: 100px;
+}
+
+.formula-box {
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  overflow: hidden;
+}
+
+.formula-img {
+  display: block;
+  width: 277px;
+  height: 158px;
+}
+
+.change-dir {
+  margin-top: -80px;
+}
+
+.js-log-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
