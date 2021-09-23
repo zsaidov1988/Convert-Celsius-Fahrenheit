@@ -13,6 +13,7 @@
   display: block;
   width: 277px;
   height: 158px;
+  transition: margin 0.3s ease;
 }
 
 .change-dir {
