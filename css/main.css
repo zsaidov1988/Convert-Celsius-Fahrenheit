@@ -1,3 +1,11 @@
+.hamb {
+  display: block;
+  background-image: url(../img/hamburger.svg);
+  background-position: center;
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+}
+
 .footer-div {
   height: 100px;
 }

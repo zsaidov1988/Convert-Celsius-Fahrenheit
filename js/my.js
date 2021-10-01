@@ -2,23 +2,33 @@
 
 // Calling HTML elements
 
-var elChangeDir = document.querySelector('.js-change-dir'); // Change convert direction button
-var elFromUnit = document.querySelector('.js-from'); //Direction: From span
-var elToUnit = document.querySelector('.js-to'); //Direction: To span
-var elFormuleImg = document.querySelector('.formula-img'); // Formula image
-var elInputNumber = document.querySelector('.js-input-number'); // Input mean for calculating
-var elOutputUnit = document.querySelector('.js-unit'); // Result unit dimention
-var elConvertButton = document.querySelector('.js-convert-button'); // Convert button
-var elOutputText = document.querySelector('.js-output'); // Output tag for result
-var elLogMessage = document.querySelector('.js-no-logs'); // p tag for log message: "There are no logs" or "Logs have been cleared" 
-var elLogList = document.querySelector('.js-log-list'); // ul tag for view logs
-var elLogClearBtn = document.querySelector('.js-log-clear-btn'); // Button for clear logs
+var elChangeDir = $('.js-change-dir'); // Change convert direction button
+var elFromUnit = $('.js-from'); //Direction: From span
+var elToUnit = $('.js-to'); //Direction: To span
+var elFormuleImg = $('.formula-img'); // Formula image
+var elInputNumber = $('.js-input-number'); // Input mean for calculating
+var elOutputUnit = $('.js-unit'); // Result unit dimention
+var elConvertButton = $('.js-convert-button'); // Convert button
+var elOutputText = $('.js-output'); // Output tag for result
+var elLogMessage = $('.js-no-logs'); // p tag for log message: "There are no logs" or "Logs have been cleared" 
+var elLogList = $('.js-log-list'); // ul tag for view logs
+var elLogClearBtn = $('.js-log-clear-btn'); // Button for clear logs
+
+var elArrayP = $('.js-array'); // P tag for output number array
+
+// table cells for output max and min numbers
+var elCellMax1 = $('.js-max1');
+var elCellMin1 = $('.js-min1');
+var elCellMax2 = $('.js-max2');
+var elCellMin2 = $('.js-min2');
+var elCellMax3 = $('.js-max3');
+var elCellMin3 = $('.js-min3');
 
 
 
 var convertDir = true; // True - Celcius to Fahrenheit; False - Fahrenheit to Celcius;
 elLogClearBtn.disabled = true; // Disable clear button
-
+var numbersArr = []; // Array for collecting numbers
 
 
 // Function for change convert direction button
@@ -58,6 +68,38 @@ elConvertButton.addEventListener('click', function () {
   elLogMessage.style.display = 'none'; // Remove "There are no logs to view" text
   elOutputText.innerHTML = `${result.toFixed(2)} ${unitResult}`; // Set content for result current convertation
   elLogClearBtn.disabled = false; // Enable clear button
+
+  // Output array 
+  numbersArr.push(number);
+  elArrayP.textContent = numbersArr.join(', ');
+
+  // Calculate max and min vaues
+  let max1 = 0;
+  let max2 = 0;
+  let max3 = 0;
+  let min1 = numbersArr[0];
+  let min2 = numbersArr[0];
+  let min3 = numbersArr[0];
+
+  // METHOD 1
+  for (num of numbersArr) {
+    max1 = (num > max1) ? num : max1;
+    min1 = (num < min1) ? num : min1;
+  }
+  // METHOD 2
+  max2 = Math.max.apply(null, numbersArr);
+  min2 = Math.min.apply(null, numbersArr);
+  // METHOD 3
+  max3 = Math.max(...numbersArr);
+  min3 = Math.min(...numbersArr);
+
+  // output max and min values
+  elCellMax1.innerHTML = max1;
+  elCellMin1.innerHTML = min1;
+  elCellMax2.innerHTML = max2;
+  elCellMin2.innerHTML = min2;
+  elCellMax3.innerHTML = max3;
+  elCellMin3.innerHTML = min3;
 });
 
 
